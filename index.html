@@ -1,8 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Daryanova Residence | رزرو هتل آپارتمان</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "IRANSans", sans-serif;
+      direction: rtl;
+      background: radial-gradient(circle at top, #fef3c7 0, #111827 55%);
+      color: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .wrapper {
+      max-width: 520px;
+      width: 100%;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.90);
+      border-radius: 24px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      backdrop-filter: blur(14px);
+    }
+    .logo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .logo-box img {
+      width: 96px;
+      height: auto;
+      margin-bottom: 8px;
+    }
+    .brand-main {
+      letter-spacing: 0.12em;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #facc6b;
+    }
+    .brand-sub {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+    .title-fa {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+    .description {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #d1d5db;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 11px;
+    }
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: linear-gradient(135deg, rgba(55, 65, 81, 0.9), rgba(30, 64, 175, 0.5));
+    }
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #facc6b, #a16207);
+      color: #111827;
+      box-shadow: 0 10px 30px rgba(250, 204, 21, 0.45);
+    }
+    .btn-primary:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 5px 18px rgba(250, 204, 21, 0.3);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+    }
+    .btn-secondary:active {
+      transform: translateY(1px) scale(0.99);
+      background: rgba(15, 23, 42, 0.9);
+    }
+    .footer {
+      margin-top: 10px;
+      font-size: 10px;
+      color: #9ca3af;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .footer span {
+      color: #facc6b;
+    }
+    @media (min-width: 640px) {
+      .card {
+        padding: 24px 22px 22px;
+      }
+      .title-fa {
+        font-size: 17px;
+      }
+      .description {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
 <body>
-<h2>سایت رزرو هتل آپارتمان فعال شد ✔️</h2>
-<p>برای رزرو از لینک زیر استفاده کنید:</p>
-<a href="reserve.html">رفتن به فرم رزرو مهمان</a>
+
+<div class="wrapper">
+  <div class="card">
+    <div class="logo-box">
+      <!-- لوگو را در ریپو با نام logo-daryanova.png آپلود کن -->
+      <img src="logo-daryanova.png" alt="Daryanova Residence Logo">
+      <div class="brand-main">DARYANOVA</div>
+      <div class="brand-sub">RESIDENCE</div>
+      <div class="title-fa">هتل‌آپارتمان ساحلی دریانووا – دریاگوشه مازندران</div>
+    </div>
+
+    <div class="description">
+      اقامتی آرام، تمیز و لوکس در چند قدمی ساحل 🌊  
+      واحدهای مبله، طراحی مدرن، دسترسی عالی به دریا و فضای سبز.  
+      برای رزرو فقط فرم را پر کنید، ادامه هماهنگی‌ها در واتساپ انجام می‌شود.
+    </div>
+
+    <div class="tags">
+      <div class="tag">نمای رو به دریا</div>
+      <div class="tag">پارکینگ</div>
+      <div class="tag">اینترنت وای‌فای</div>
+      <div class="tag">آپارتمان‌های یک‌خوابه و دوخوابه</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="goReserve()">
+        رزرو آنلاین واحد 📲
+      </button>
+
+      <a class="btn btn-secondary" href="https://wa.me/989382382863" target="_blank" rel="noopener">
+        تماس مستقیم در واتساپ با مدیریت
+      </a>
+    </div>
+
+    <div class="footer">
+      رزرو شما پس از بررسی و تأیید در واتساپ نهایی می‌شود. <br>
+      <span>Daryanova Residence</span> – لحظه‌های آرام کنار دریا.
+    </div>
+  </div>
+</div>
+
+<script>
+  function goReserve() {
+    window.location.href = "reserve.html";
+  }
+</script>
+
 </body>
 </html>
