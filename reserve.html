@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>فرم رزرو</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f3f4f6;
+      direction: rtl;
+    }
+    .box {
+      max-width: 420px;
+      margin: 24px auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      text-align: center;
+    }
+    p {
+      margin: 0 0 14px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    input, textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 9px 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+      background: #f9fafb;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #111827;
+      background: #fff;
+    }
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 11px;
+      font-size: 14px;
+      font-weight: 600;
+      background: #111827;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    button:active { transform: scale(0.98); }
+    .note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>درخواست رزرو</h1>
+  <p>لطفاً اطلاعات خود را وارد کنید. پیام از طریق واتساپ برای مدیریت ارسال می‌شود.</p>
+
+  <form id="form">
+    <label for="name">نام و نام خانوادگی</label>
+    <input id="name" type="text" placeholder="مثلاً علی رضایی" required>
+
+    <label for="phone">شماره تماس</label>
+    <input id="phone" type="tel" placeholder="مثلاً 0912xxxxxxx" required>
+
+    <label for="in">تاریخ ورود</label>
+    <input id="in" type="text" placeholder="مثلاً 1403/04/20" required>
+
+    <label for="out">تاریخ خروج</label>
+    <input id="out" type="text" placeholder="مثلاً 1403/04/23" required>
+
+    <label for="guests">تعداد نفرات</label>
+    <input id="guests" type="number" min="1" placeholder="مثلاً 3" required>
+
+    <label for="note">توضیحات (اختیاری)</label>
+    <textarea id="note" placeholder="مثلاً همراه کودک / ساعت حدودی رسیدن"></textarea>
+
+    <button type="submit">ارسال از طریق واتساپ 📲</button>
+
+    <div class="note">
+      تا زمان تأیید مدیریت، رزرو قطعی نیست.
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById("form");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name   = document.getElementById("name").value.trim();
+    const phone  = document.getElementById("phone").value.trim();
+    const inDate = document.getElementById("in").value.trim();
+    const outDate= document.getElementById("out").value.trim();
+    const guests = document.getElementById("guests").value.trim();
+    const note   = document.getElementById("note").value.trim();
+
+    let text = "درخواست رزرو جدید:%0A%0A";
+    text += "👤 نام: " + name + "%0A";
+    text += "📱 شماره تماس: " + phone + "%0A";
+    text += "📅 ورود: " + inDate + "%0A";
+    text += "📅 خروج: " + outDate + "%0A";
+    text += "👥 تعداد نفرات: " + guests + "%0A";
+    if (note) {
+      text += "%0A📝 توضیحات:%0A" + encodeURIComponent(note) + "%0A";
+    }
+
+    // شماره واتساپ مدیریت: 09382382863
+    const managerNumber = "989382382863"; // 98 + 9382382863
+
+    const url = "https://wa.me/" + managerNumber + "?text=" + text;
+    window.location.href = url;
+  });
+</script>
+
+</body>
+</html>
