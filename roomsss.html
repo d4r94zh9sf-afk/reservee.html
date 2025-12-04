@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>وضعیت واحدها | Daryanova Residence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "IRANSans", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      direction: rtl;
+    }
+    .wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid rgba(148,163,184,.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,.6);
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 11px;
+      text-align: center;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 11px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+    .dot-empty { background: #22c55e; }
+    .dot-booked { background: #ef4444; }
+    .dot-cleaning { background: #eab308; }
+
+    .rooms {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .room-card {
+      background: rgba(15,23,42,0.96);
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px solid rgba(55,65,81,0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .room-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+    .room-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .room-id {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+    .status-badge {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .status-empty {
+      background: rgba(22,163,74,0.18);
+      color: #4ade80;
+      border: 1px solid rgba(34,197,94,0.6);
+    }
+    .status-booked {
+      background: rgba(248,113,113,0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(248,113,113,0.6);
+    }
+    .status-cleaning {
+      background: rgba(234,179,8,0.12);
+      color: #fde68a;
+      border: 1px solid rgba(234,179,8,0.6);
+    }
+    .room-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      gap: 8px;
+      font-size: 11px;
+      color: #9ca3af;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #facc6b, #a16207);
+      color: #111827;
+      box-shadow: 0 8px 20px rgba(250,204,21,0.5);
+    }
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 4px 12px rgba(250,204,21,0.35);
+    }
+    .back-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 11px;
+    }
+    .back-link a {
+      color: #facc6b;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="card">
+    <h1>وضعیت واحدها</h1>
+    <div class="subtitle">
+      وضعیت فعلی واحدهای Daryanova Residence. برای رزرو، از طریق واتساپ با مدیریت در تماس باشید.
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="dot dot-empty"></span><span>خالی</span>
+      </div>
+      <div class="legend-item">
+        <span class="dot dot-booked"></span><span>رزرو شده</span>
+      </div>
+      <div class="legend-item">
+        <span class="dot dot-cleaning"></span><span>در حال نظافت</span>
+      </div>
+    </div>
+
+    <div class="rooms">
+      <!-- هرجا خواستی وضعیت رو عوض کنی فقط کلمه خالی / رزرو شده / در حال نظافت و کلاس رو عوض کن -->
+
+      <div class="room-card">
+        <div class="room-header">
+          <div>
+            <div class="room-name">واحد ۱</div>
+            <div class="room-id">یک‌خوابه</div>
+          </div>
+          <div class="status-badge status-empty">خالی</div>
+        </div>
+        <div class="room-footer">
+          <div>مناسب ۲–۳ نفر</div>
+          <button class="btn" onclick="location.href='https://wa.me/989382382863?text='+encodeURIComponent('سلام، در مورد واحد ۱ اطلاعات و قیمت میخواستم.')">
+            درخواست رزرو واحد ۱
+          </button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-header">
+          <div>
+            <div class="room-name">واحد ۲</div>
+            <div class="room-id">یک‌خوابه</div>
+          </div>
+          <div class="status-badge status-booked">رزرو شده</div>
+        </div>
+        <div class="room-footer">
+          <div>مناسب ۲–۳ نفر</div>
+          <button class="btn" onclick="location.href='https://wa.me/989382382863?text='+encodeURIComponent('سلام، در مورد واحد ۲ اطلاعات و تاریخ خالی میخواستم.')">
+            استعلام وضعیت واحد ۲
+          </button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-header">
+          <div>
+            <div class="room-name">واحد ۳</div>
+            <div class="room-id">دوخوابه</div>
+          </div>
+          <div class="status-badge status-cleaning">در حال نظافت</div>
+        </div>
+        <div class="room-footer">
+          <div>مناسب ۴–۵ نفر</div>
+          <button class="btn" onclick="location.href='https://wa.me/989382382863?text='+encodeURIComponent('سلام، در مورد واحد ۳ و تاریخ‌های خالی، راهنمایی میخواستم.')">
+            استعلام وضعیت واحد ۳
+          </button>
+        </div>
+      </div>
+
+      <!-- واحدهای ۴ تا ۱۲ رو می‌تونی شبیه بالا کپی کنی و متن‌هاش رو تغییر بدی -->
+    </div>
+
+    <div class="back-link">
+      بازگشت به صفحه اصلی رزرو:
+      <a href="index.html">صفحه اصلی Daryanova</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
