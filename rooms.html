@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>وضعیت واحدها | Daryanova Residence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "IRANSans", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      direction: rtl;
+    }
+    .wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid rgba(148,163,184,.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,.6);
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 11px;
+      text-align: center;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 11px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+    .dot-empty { background: #22c55e; }
+    .dot-booked { background: #ef4444; }
+    .dot-cleaning { background: #eab308; }
+
+    .rooms {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .room-card {
+      background: rgba(15,23,42,0.96);
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px solid rgba(55,65,81,0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .room-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+    .room-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .room-id {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+    .status-badge {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .status-empty {
+      background: rgba(22,163,74,0.18);
+      color: #4ade80;
+      border: 1px solid rgba(34,197,94,0.6);
+    }
+    .status-booked {
+      background: rgba(248,113,113,0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(248,113,113,0.6);
+    }
+    .status-cleaning {
+      background: rgba(234,179,8,0.12);
+      color: #fde68a;
+      border: 1px solid rgba(234,179,8,0.6);
+    }
+    .status-unknown {
+      background: rgba(148,163,184,0.12);
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.6);
+    }
+    .room-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      gap: 8px;
+      font-size: 11px;
+      color: #9ca3af;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #facc6b, #a16207);
+      color: #111827;
+      box-shadow: 0 8px 20px rgba(250,204,21,0.5);
+    }
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 4px 12px rgba(250,204,21,0.35);
+    }
+    .back-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 11px;
+    }
+    .back-link a {
+      color: #facc6b;
+      text-decoration: none;
+    }
+    .error, .loading {
+      font-size: 12px;
+      text-align: center;
+      margin-top: 10px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="card">
+    <h1>وضعیت واحدها</h1>
+    <div class="subtitle">
+      وضعیت لحظه‌ای واحدهای Daryanova Residence بر اساس اطلاعات ثبت شده در سیستم مدیریت.
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="dot dot-empty"></span><span>خالی</span>
+      </div>
+      <div class="legend-item">
+        <span class="dot dot-booked"></span><span>رزرو شده</span>
+      </div>
+      <div class="legend-item">
+        <span class="dot dot-cleaning"></span><span>در حال نظافت</span>
+      </div>
+    </div>
+
+    <div id="loading" class="loading">در حال دریافت اطلاعات واحدها از سیستم…</div>
+    <div id="error" class="error" style="display:none;"></div>
+
+    <div id="roomsContainer" class="rooms"></div>
+
+    <div class="back-link">
+      بازگشت به صفحه اصلی رزرو:
+      <a href="index.html">صفحه اصلی Daryanova</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // شناسه شیت تو
+  const SHEET_ID = "1-5xWZOBhvfqMiNVhNM3MNNW5DO6Qklx76jo9MRZCpIk";
+  // اگر اسم شیتت Sheet1 نیست، اینو عوض کن
+  const SHEET_NAME = "Sheet1";
+
+  const roomsContainer = document.getElementById("roomsContainer");
+  const errorBox = document.getElementById("error");
+  const loadingBox = document.getElementById("loading");
+
+  function getStatusInfo(statusRaw) {
+    const s = (statusRaw || "").toString().trim().toLowerCase();
+    if (s === "empty") {
+      return { label: "خالی", cls: "status-empty" };
+    } else if (s === "booked") {
+      return { label: "رزرو شده", cls: "status-booked" };
+    } else if (s === "cleaning") {
+      return { label: "در حال نظافت", cls: "status-cleaning" };
+    }
+    return { label: "نامشخص", cls: "status-unknown" };
+  }
+
+  function createWhatsAppLink(roomName) {
+    const managerNumber = "989382382863"; // 98 + 9382382863
+    const text = encodeURIComponent("سلام، برای رزرو " + roomName + " در داریانووا اطلاعات می‌خواستم.");
+    return "https://wa.me/" + managerNumber + "?text=" + text;
+  }
+
+  function renderRooms(rows) {
+    roomsContainer.innerHTML = "";
+    rows.forEach(row => {
+      const idCell = row.c[0];
+      const nameCell = row.c[1];
+      const statusCell = row.c[2];
+
+      if (!idCell && !nameCell) return;
+
+      const roomId = idCell ? idCell.v : "";
+      const roomName = nameCell ? nameCell.v : ("واحد " + roomId);
+      const statusRaw = statusCell ? statusCell.v : "";
+      const statusInfo = getStatusInfo(statusRaw);
+
+      const card = document.createElement("div");
+      card.className = "room-card";
+
+      const header = document.createElement("div");
+      header.className = "room-header";
+
+      const leftBox = document.createElement("div");
+      const nameEl = document.createElement("div");
+      nameEl.className = "room-name";
+      nameEl.textContent = roomName;
+
+      const idEl = document.createElement("div");
+      idEl.className = "room-id";
+      idEl.textContent = "شناسه: " + roomId;
+
+      leftBox.appendChild(nameEl);
+      leftBox.appendChild(idEl);
+
+      const statusBadge = document.createElement("div");
+      statusBadge.className = "status-badge " + statusInfo.cls;
+      statusBadge.textContent = statusInfo.label;
+
+      header.appendChild(leftBox);
+      header.appendChild(statusBadge);
+
+      const footer = document.createElement("div");
+      footer.className = "room-footer";
+
+      const statusTxt = document.createElement("div");
+      statusTxt.textContent = "وضعیت از آخرین بروزرسانی سیستم مدیریت";
+
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = "درخواست رزرو این واحد";
+      btn.addEventListener("click", () => {
+        window.location.href = createWhatsAppLink(roomName);
+      });
+
+      footer.appendChild(statusTxt);
+      footer.appendChild(btn);
+
+      card.appendChild(header);
+      card.appendChild(footer);
+
+      roomsContainer.appendChild(card);
+    });
+  }
+
+  function loadRooms() {
+    const url =
+      "https://docs.google.com/spreadsheets/d/" +
+      SHEET_ID +
+      "/gviz/tq?sheet=" +
+      encodeURIComponent(SHEET_NAME) +
+      "&tq=" +
+      encodeURIComponent("select *");
+
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        // پاسخ Google Sheets به صورت JSON عجیب با متن اضافه است
+        const jsonStr = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
+        const data = JSON.parse(jsonStr);
+        const rows = data.table.rows || [];
+        loadingBox.style.display = "none";
+        renderRooms(rows);
+      })
+      .catch(err => {
+        console.error(err);
+        loadingBox.style.display = "none";
+        errorBox.style.display = "block";
+        errorBox.textContent = "خطا در دریافت اطلاعات از شیت گوگل. لطفاً بعداً دوباره تلاش کنید یا وضعیت را از طریق واتساپ بپرسید.";
+      });
+  }
+
+  loadRooms();
+</script>
+
+</body>
+</html>
